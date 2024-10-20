@@ -8,7 +8,11 @@ import (
 )
 
 func RegisterRoutes(app *fiber.App) {
-	app.Get("/", adaptor.HTTPHandlerFunc(handlers.Auth))
+	// app.Get("/", adaptor.HTTPHandlerFunc(handlers.Auth)) // This may need to be a redirect to sign-in instead
+	app.Get("/", adaptor.HTTPHandlerFunc(handlers.SignIn))
+
+	app.Get("/sign-up", adaptor.HTTPHandlerFunc(handlers.SignUp))
+	app.Get("/sign-in", adaptor.HTTPHandlerFunc(handlers.SignIn))
 
 	app.Get("/auth/{provider}", adaptor.HTTPHandlerFunc(handlers.Auth))
 	app.Get("/auth/{provider}/callback", adaptor.HTTPHandlerFunc(handlers.AuthCallback))
